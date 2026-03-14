@@ -1,0 +1,325 @@
+/* ==========================================
+   //PROJET - LECTEUR SOUNDWAVE
+    //Fichier de styles principal
+   ========================================== */
+
+:root {
+  --fond-noir: #080810;
+  --fond-carte: #0f0f1a;
+  --fond-item: #16162a;
+  --bordure-legere: rgba(255, 255, 255, 0.05);
+  --texte-clair: #e8e6ff;
+  --texte-gris: #8885aa;
+  --violet: #c084fc;
+  --bleu-accent: #818cf8;
+}
+
+/* Reset de base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--fond-noir);
+  color: var(--texte-clair);
+  font-family: 'Space Grotesk', sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Arrière-plan avec les cercles de couleur */
+.fond-anime {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+.cercle-flou {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.2;
+  transition: background 1.5s ease;
+}
+
+.un { width: 500px; height: 500px; top: -150px; left: -150px; }
+.deux { width: 400px; height: 400px; bottom: -100px; right: -100px; }
+
+/* Conteneur de l'application */
+.interface-lecteur {
+  display: flex;
+  width: 900px;
+  height: 600px;
+  background: var(--fond-carte);
+  border: 1px solid var(--bordure-legere);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+}
+
+/* Barre latérale (Liste) */
+.menu-liste {
+  width: 300px;
+  background: var(--fond-item);
+  border-right: 1px solid var(--bordure-legere);
+  display: flex;
+  flex-direction: column;
+}
+
+.entete-menu {
+  padding: 25px;
+  border-bottom: 1px solid var(--bordure-legere);
+}
+
+.info-fac {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--violet);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.titre-app {
+  font-family: 'Outfit', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.liste-musiques {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+/* Styles pour chaque morceau dans la liste */
+.item-musique {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.item-musique:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.item-musique.active {
+  background: rgba(192, 132, 252, 0.1);
+  border-left: 3px solid var(--violet);
+}
+
+.mini-pochette {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info strong {
+  display: block;
+  font-size: 13px;
+}
+
+.item-info span {
+  font-size: 11px;
+  color: var(--texte-gris);
+}
+
+/* Zone principale du lecteur */
+.lecteur-principal {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.visuel-album {
+  margin-bottom: 30px;
+}
+
+.disque {
+  width: 200px;
+  height: 200px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  transition: 0.5s ease;
+}
+
+/* Animation de rotation quand la musique joue */
+.tourne {
+  animation: rotationDisque 20s linear infinite;
+  border-radius: 50%; /* Devient un disque rond en tournant */
+}
+
+@keyframes rotationDisque {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Titres et textes */
+.infos-morceau {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.label-lecture {
+  font-size: 10px;
+  color: var(--violet);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.titre-actuel {
+  font-family: 'Outfit', sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.artiste-actuel {
+  color: var(--texte-gris);
+}
+
+/* Barre de progression */
+.barre-progression {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 30px;
+}
+
+.temps {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--texte-gris);
+  margin-bottom: 8px;
+}
+
+.curseur-fond {
+  height: 4px;
+  background: #252538;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.curseur-remplissage {
+  height: 100%;
+  background: linear-gradient(90deg, var(--bleu-accent), var(--violet));
+  border-radius: 2px;
+  width: 0%;
+}
+
+/* Boutons de contrôle */
+.boutons-controle {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.btn-ctrl {
+  background: none;
+  border: none;
+  color: var(--texte-gris);
+  font-size: 22px;
+  cursor: pointer;
+  padding: 10px;
+  transition: 0.2s;
+}
+
+.btn-ctrl:hover {
+  color: white;
+  transform: scale(1.1);
+}
+
+.btn-lecture {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--bleu-accent), var(--violet));
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(192, 132, 252, 0.3);
+}
+
+.btn-lecture:hover {
+  transform: scale(1.05);
+}
+
+/* Contrôle du volume */
+.controle-volume {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 150px;
+}
+
+.icone-vol {
+  font-size: 14px;
+  color: var(--texte-gris);
+}
+
+.volume-fond {
+  flex: 1;
+  height: 3px;
+  background: #252538;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.volume-remplissage {
+  height: 100%;
+  background: var(--violet);
+  width: 75%;
+}
+
+/* Égaliseur visuel au bas du lecteur */
+.egaliseur {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  height: 40px;
+  margin-top: auto;
+  opacity: 0.3;
+}
+
+.barre-egaliseur {
+  width: 4px;
+  background: var(--violet);
+  border-radius: 2px 2px 0 0;
+  height: 5px;
+}
+
+/* réponses pour mobiles */
+@media (max-width: 700px) {
+  .interface-lecteur {
+    flex-direction: column;
+    width: 95vw;
+    height: auto;
+  }
+  .menu-liste {
+    width: 100%;
+    max-height: 200px;
+  }
+}

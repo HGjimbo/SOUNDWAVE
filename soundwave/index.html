@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lecteur Audio - Projet SoundWave</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<div class="fond-anime">
+  <div class="cercle-flou un" id="cercle1"></div>
+  <div class="cercle-flou deux" id="cercle2"></div>
+</div>
+
+<div class="interface-lecteur">
+  <aside class="menu-liste">
+    <div class="entete-menu">
+      
+      <div class="titre-app">SoundWave</div>
+    </div>
+    <div class="liste-musiques" id="listeChansons">
+      </div>
+  </aside>
+
+  <main class="lecteur-principal">
+    <div class="visuel-album">
+      <div class="disque" id="pochette">
+        <div class="anneau-deco"></div>
+        <span id="iconeMusique">🎵</span>
+      </div>
+    </div>
+
+    <div class="infos-morceau">
+      <div class="label-lecture">En cours d'écoute</div>
+      <h2 class="titre-actuel" id="titreMusique">Choisir une musique</h2>
+      <p class="artiste-actuel" id="artisteMusique">—</p>
+    </div>
+
+    <div class="barre-progression">
+      <div class="temps">
+        <span id="tempsEcoule">0:00</span>
+        <span id="tempsTotal">0:00</span>
+      </div>
+      <div class="curseur-fond" id="barreFond">
+        <div class="curseur-remplissage" id="barreRemplissage" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="boutons-controle">
+      <button class="btn-ctrl" id="btnAleatoire" onclick="basculerAleatoire()" title="Aléatoire">🔀</button>
+      <button class="btn-ctrl" onclick="musiquePrecedente()" title="Précédent">⏮</button>
+      <button class="btn-lecture" id="boutonPlay" onclick="gererLecture()">▶</button>
+      <button class="btn-ctrl" onclick="musiqueSuivante()" title="Suivant">⏭</button>
+      <button class="btn-ctrl" id="btnRepeter" onclick="basculerRepetition()" title="Répéter">🔁</button>
+    </div>
+
+    <div class="controle-volume">
+      <span class="icone-vol" id="iconeVolume">🔊</span>
+      <div class="volume-fond" id="barreVolume">
+        <div class="volume-remplissage" id="remplissageVolume" style="width:75%"></div>
+      </div>
+    </div>
+
+    <div class="egaliseur" id="zoneEgaliseur"></div>
+  </main>
+</div> 
+
+<script src="js/tracks.js"></script>
+<script src="js/player.js"></script>
+</body>
+</html>
